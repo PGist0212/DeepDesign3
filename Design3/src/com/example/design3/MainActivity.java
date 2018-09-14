@@ -39,12 +39,12 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		final Window win = getWindow();  // À©µµ¿ì °´Ã¼ ÂüÁ¶
+		final Window win = getWindow();  // ìœˆë„ìš° ê°ì²´ ì°¸ì¡°
 		win.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		// ÁÂ,¿ì È­¸é ÀüÈ¯½Ã ÀüÃ¼ È­¸é º¸±â·Î ¼³Á¤.
+		// ì¢Œ,ìš° í™”ë©´ ì „í™˜ì‹œ ì „ì²´ í™”ë©´ ë³´ê¸°ë¡œ ì„¤ì •.
 		
 		try {
-			socket = new Socket("223.195.14.138", 5555);  // Àå¼Ò³ª ¿ÍÀÌÆÄÀÌ Áö¿ª ÀüÈ¯½Ã Ç×»ó Ã¼Å©!!
+			socket = new Socket("xxx.xxx.xxx.xxx", 5555);  // ì¥ì†Œë‚˜ ì™€ì´íŒŒì´ ì§€ì—­ ì „í™˜ì‹œ í•­ìƒ ì²´í¬!!
 			socket_out = new PrintWriter(socket.getOutputStream(), true);
 			socket_in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		button1.setOnClickListener(new OnClickListener() {		//'ÀÔ·Â¿Ï·á'¹öÆ°À» ´©¸£¸é
+		button1.setOnClickListener(new OnClickListener() {		//'ì…ë ¥ì™„ë£Œ'ë²„íŠ¼ì„ ëˆ„ë¥´ë©´
 			public void onClick(View v) {
 				try{
 					Intent CallIntent=new Intent(Intent.ACTION_DIAL);	//or ACTION_CALL
@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
 		Thread worker = new Thread() {
 			public void run() {
 				try {
-					while (!(dataRead.equals(null))) {  /** ¾øÀ¸¸é µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ® ¾È¤»ÇÔ¤». */
+					while (!(dataRead.equals(null))) {  /** ì—†ìœ¼ë©´ ë°ì´í„° ì—…ë°ì´íŠ¸ ì•ˆã…‹í•¨ã…‹. */
 						dataRead = socket_in.readLine();
 						Text_Out.post(new Runnable() {
 							public void run() {
@@ -128,11 +128,11 @@ public class MainActivity extends Activity {
 		}
 	}
 	
-	public void onConfigurationChanged(Configuration newConfig)  // È­¸é ÁÂ,¿ì ÀüÈ¯½Ã ¹ß»ıÇÏ´Â Åä½ºÆ® °ü·Ã.
+	public void onConfigurationChanged(Configuration newConfig)  // í™”ë©´ ì¢Œ,ìš° ì „í™˜ì‹œ ë°œìƒí•˜ëŠ” í† ìŠ¤íŠ¸ ê´€ë ¨.
 	{
 		super.onConfigurationChanged(newConfig);
 		
-		if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)  // °¡·Î¹æÇâ ÀüÈ¯
+		if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)  // ê°€ë¡œë°©í–¥ ì „í™˜
 		{
 			Toast.makeText(this, "Landscape", Toast.LENGTH_SHORT).show();
 		}
